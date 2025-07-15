@@ -4,7 +4,14 @@ import faiss
 import numpy as np
 import pickle
 import os
+import logging
 
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    handlers=[logging.StreamHandler()]
+)
+logger = logging.getLogger(__name__)
 app = FastAPI()
 dimension = 1024  # mistral-embed dimension
 index = faiss.IndexFlatL2(dimension)
@@ -37,8 +44,6 @@ async def add_vectors(vectors: list[list[float]], chunks: list[str]):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-import logging
-logging.basicConfig(level=logging.DEBUG)
 @app.post("/search")
 async def search(query_vector: list[float], k: int = 5):
     logging.debug(f"Received query_vector: length={len(query_vector)}, sample={query_vector[:5]}")
@@ -63,4 +68,4 @@ async def index_stats(api_key: str = Depends(api_key_header)):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000, log_level="debug")
