@@ -1,0 +1,342 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.page {
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+    margin-bottom: 1.5rem;
+}
+
+.card-header {
+    font-weight: 600;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.btn {
+    border-radius: 0.3rem;
+    font-weight: 500;
+}
+
+.table {
+    background-color: white;
+}
+
+.table th {
+    border-top: none;
+    font-weight: 600;
+    color: #495057;
+}
+
+.progress {
+    height: 10px;
+}
+
+.modal-content {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+    border-bottom: 1px solid #dee2e6;
+    background-color: #f8f9fa;
+}
+
+.modal-footer {
+    border-top: 1px solid #dee2e6;
+    background-color: #f8f9fa;
+}
+
+.toast {
+    background-color: white;
+    border: none;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.nav-link {
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    transform: translateY(-2px);
+}
+
+.nav-link.active {
+    font-weight: 600;
+}
+
+.list-group-item {
+    border: none;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+}
+
+.form-control, .form-select {
+    border-radius: 0.3rem;
+    border: 1px solid #ced4da;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Custom styles for dashboard cards */
+.card.text-white .card-title {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+/* Custom styles for progress page */
+#student-progress-details {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#learning-path-container {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-height: 200px;
+}
+
+/* Custom styles for content and test modals */
+#contentModalBody, #testModalBody {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* Custom styles for learning path milestones */
+.milestone {
+    background-color: #f8f9fa;
+    border-left: 4px solid #007bff;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.3rem;
+}
+
+.milestone.completed {
+    border-left-color: #28a745;
+    background-color: #d4edda;
+}
+
+.milestone-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.milestone-description {
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+}
+
+.milestone-status {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.status-completed {
+    color: #28a745;
+}
+
+.status-pending {
+    color: #007bff;
+}
+
+/* Custom styles for test questions */
+.question {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.3rem;
+}
+
+.question-type {
+    font-size: 0.875rem;
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+}
+
+.question-text {
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.question-options {
+    margin-left: 1.5rem;
+}
+
+.question-option {
+    margin-bottom: 0.5rem;
+}
+
+.correct-answer {
+    color: #28a745;
+    font-weight: 500;
+}
+
+/* Custom styles for content sections */
+.content-section {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.3rem;
+    border-left: 4px solid #007bff;
+}
+
+.section-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.section-content {
+    margin-bottom: 1rem;
+}
+
+.section-questions {
+    margin-top: 1rem;
+}
+
+.study-question {
+    font-style: italic;
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card-text-white .card-title {
+        font-size: 1.5rem;
+    }
+    
+    .modal-dialog {
+        margin: 1rem;
+    }
+}
+
+/* Loading spinner */
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #6c757d;
+}
+
+.empty-state-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #dee2e6;
+}
+
+.empty-state-text {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.empty-state-subtext {
+    color: #6c757d;
+}
+
+/* Action buttons */
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Badge styles */
+.badge {
+    font-weight: 500;
+    padding: 0.35em 0.65em;
+}
+
+/* Topic tags */
+.topic-tag {
+    display: inline-block;
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Strength and weakness indicators */
+.strength {
+    color: #28a745;
+}
+
+.weakness {
+    color: #dc3545;
+}
+
+/* Performance trend indicators */
+.trend-up {
+    color: #28a745;
+}
+
+.trend-down {
+    color: #dc3545;
+}
+
+.trend-stable {
+    color: #007bff;
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease-out;
+}

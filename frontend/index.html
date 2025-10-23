@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Mentorship Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">EduMentor AI</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" data-page="dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="documents">Documents</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="content">Content</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="tests">Tests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="progress">Progress</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Dashboard Page -->
+        <div id="dashboard-page" class="page">
+            <h1>Dashboard</h1>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card text-white bg-primary mb-3">
+                        <div class="card-header">Documents</div>
+                        <div class="card-body">
+                            <h5 class="card-title" id="document-count">0</h5>
+                            <p class="card-text">Uploaded Documents</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white bg-success mb-3">
+                        <div class="card-header">Content</div>
+                        <div class="card-body">
+                            <h5 class="card-title" id="content-count">0</h5>
+                            <p class="card-text">Generated Content</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white bg-info mb-3">
+                        <div class="card-header">Tests</div>
+                        <div class="card-body">
+                            <h5 class="card-title" id="test-count">0</h5>
+                            <p class="card-text">Created Tests</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white bg-warning mb-3">
+                        <div class="card-header">Students</div>
+                        <div class="card-body">
+                            <h5 class="card-title" id="student-count">0</h5>
+                            <p class="card-text">Registered Students</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">Recent Activity</div>
+                        <div class="card-body">
+                            <ul class="list-group" id="recent-activity">
+                                <li class="list-group-item">No recent activity</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">Quick Actions</div>
+                        <div class="card-body">
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-primary" onclick="showPage('documents')">Upload Document</button>
+                                <button class="btn btn-success" onclick="showPage('content')">Generate Content</button>
+                                <button class="btn btn-info" onclick="showPage('tests')">Create Test</button>
+                                <button class="btn btn-warning" onclick="showPage('progress')">View Progress</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Documents Page -->
+        <div id="documents-page" class="page" style="display: none;">
+            <h1>Documents</h1>
+            <div class="card mb-4">
+                <div class="card-header">Upload New Document</div>
+                <div class="card-body">
+                    <form id="upload-form">
+                        <div class="mb-3">
+                            <label for="document-file" class="form-label">Select PDF Document</label>
+                            <input type="file" class="form-control" id="document-file" accept=".pdf" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Uploaded Documents</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Filename</th>
+                                    <th>Upload Date</th>
+                                    <th>Chunks</th>
+                                    <th>Characters</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="documents-table">
+                                <tr>
+                                    <td colspan="5" class="text-center">No documents uploaded yet</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Page -->
+        <div id="content-page" class="page" style="display: none;">
+            <h1>Educational Content</h1>
+            <div class="card mb-4">
+                <div class="card-header">Generate New Content</div>
+                <div class="card-body">
+                    <form id="content-form">
+                        <div class="mb-3">
+                            <label for="document-select" class="form-label">Select Document</label>
+                            <select class="form-select" id="document-select" required>
+                                <option value="">Choose a document...</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="include-lesson-plan" checked>
+                            <label class="form-check-label" for="include-lesson-plan">Include Lesson Plan</label>
+                        </div>
+                        <button type="submit" class="btn btn-success">Generate Content</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Generated Content</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Document</th>
+                                    <th>Created Date</th>
+                                    <th>Topics</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="content-table">
+                                <tr>
+                                    <td colspan="5" class="text-center">No content generated yet</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tests Page -->
+        <div id="tests-page" class="page" style="display: none;">
+            <h1>Tests</h1>
+            <div class="card mb-4">
+                <div class="card-header">Create New Test</div>
+                <div class="card-body">
+                    <form id="test-form">
+                        <div class="mb-3">
+                            <label for="content-select" class="form-label">Select Content</label>
+                            <select class="form-select" id="content-select" required>
+                                <option value="">Choose content...</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="test-title" class="form-label">Test Title (Optional)</label>
+                            <input type="text" class="form-control" id="test-title" placeholder="Leave blank for auto-generated title">
+                        </div>
+                        <div class="mb-3">
+                            <label for="question-count" class="form-label">Number of Questions</label>
+                            <input type="number" class="form-control" id="question-count" min="1" max="50" value="10">
+                        </div>
+                        <div class="mb-3">
+                            <label for="difficulty" class="form-label">Difficulty</label>
+                            <select class="form-select" id="difficulty">
+                                <option value="easy">Easy</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-info">Create Test</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Created Tests</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Content</th>
+                                    <th>Questions</th>
+                                    <th>Difficulty</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tests-table">
+                                <tr>
+                                    <td colspan="5" class="text-center">No tests created yet</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Page -->
+        <div id="progress-page" class="page" style="display: none;">
+            <h1>Student Progress</h1>
+            <div class="card mb-4">
+                <div class="card-header">Register New Student</div>
+                <div class="card-body">
+                    <form id="student-form">
+                        <div class="mb-3">
+                            <label for="student-name" class="form-label">Student Name</label>
+                            <input type="text" class="form-control" id="student-name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="student-email" class="form-label">Student Email</label>
+                            <input type="email" class="form-control" id="student-email" required>
+                        </div>
+                        <button type="submit" class="btn btn-warning">Register Student</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header">Student Progress</div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="student-select" class="form-label">Select Student</label>
+                        <select class="form-select" id="student-select">
+                            <option value="">Choose a student...</option>
+                        </select>
+                    </div>
+                    <div id="student-progress-details" style="display: none;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>Performance Summary</h5>
+                                <div class="mb-3">
+                                    <label class="form-label">Content Completion: <span id="content-completion">0%</span></label>
+                                    <div class="progress">
+                                        <div class="progress-bar" id="content-progress-bar" role="progressbar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Average Test Score: <span id="average-score">0%</span></label>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-info" id="score-progress-bar" role="progressbar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <p><strong>Tests Taken:</strong> <span id="tests-taken">0</span></p>
+                                    <p><strong>Highest Score:</strong> <span id="highest-score">0%</span></p>
+                                    <p><strong>Performance Trend:</strong> <span id="performance-trend">N/A</span></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Strengths & Weaknesses</h5>
+                                <div class="mb-3">
+                                    <h6>Strengths:</h6>
+                                    <ul id="strengths-list">
+                                        <li>No strengths identified</li>
+                                    </ul>
+                                </div>
+                                <div class="mb-3">
+                                    <h6>Weaknesses:</h6>
+                                    <ul id="weaknesses-list">
+                                        <li>No weaknesses identified</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <button class="btn btn-primary" onclick="generateLearningPath()">Generate Learning Path</button>
+                            <button class="btn btn-info" onclick="generateRecommendations()">Get Recommendations</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Learning Path</div>
+                <div class="card-body">
+                    <div id="learning-path-container">
+                        <p class="text-center">Select a student to view their learning path</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for displaying content details -->
+    <div class="modal fade" id="contentModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contentModalTitle">Content Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="contentModalBody">
+                    <!-- Content will be loaded here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for displaying test details -->
+    <div class="modal fade" id="testModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="testModalTitle">Test Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="testModalBody">
+                    <!-- Test details will be loaded here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast notifications -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="toast" class="toast" role="alert">
+            <div class="toast-header">
+                <strong class="me-auto" id="toast-title">Notification</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body" id="toast-message">
+                <!-- Toast message will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
